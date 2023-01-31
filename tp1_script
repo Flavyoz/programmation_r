@@ -1,1 +1,34 @@
+Question 2.1.1
 
+brutToNet1 <- function(salaire, taux)
+{
+  if (is.numeric(salaire) == FALSE | is.numeric(taux) == FALSE)
+  {
+    print("ERROR : type not expected")
+  } else {
+  salaire_net <- salaire * (1-taux)
+  return(salaire_net)
+} }
+
+
+
+Question 2.1.2
+
+brutToNet2 <-function(salaire,statut)
+{
+  if (statut != "cadre" | statut != "non-cadre")
+  {
+    print("ERROR : contract unknown")
+  }
+  if (statut == "cadre")
+  {
+    salaire_av_impot <- salaire * (1 - 0.25)
+  } else {
+    salaire_av_impot <- salaire * (1 - 0.22)
+  }
+  salaire_net <- salaire_av_impot *(1 - 0.075)
+return(salaire_net)}
+
+
+
+Question 2.1.3
