@@ -1,0 +1,70 @@
+Question 2.1.1
+
+brutToNet1 <- function(salaire, taux)
+{
+  if (is.numeric(salaire) == FALSE | is.numeric(taux) == FALSE)
+  {
+    print("ERROR : type not expected")
+  } else {
+  salaire_net <- salaire * (1-taux)
+  return(salaire_net)
+} }
+
+
+
+Question 2.1.2
+
+brutToNet2 <-function(salaire,statut)
+{
+  if (statut != "cadre" | statut != "non-cadre")
+  {
+    print("ERROR : contract unknown")
+  }
+  if (statut == "cadre")
+  {
+    salaire_av_impot <- salaire * (1 - 0.25)
+  } else {
+    salaire_av_impot <- salaire * (1 - 0.22)
+  }
+  salaire_net <- salaire_av_impot *(1 - 0.075)
+  
+return(salaire_net)
+}
+
+
+
+Question 2.1.3
+
+brutTonNet3 <- function(salaire, statut, tx_source, tps_travail) {  #on définitla fonction ainsi que les 4 valeurs d'entrées
+  
+  if (tx_source < 0 || tx_source > 100) # on test si la valeur du taux de prélèvement à la source est bien entre 0 et 100
+    {
+    print("ERROR : rate and time must be in range(0,100)")
+    }
+  if (tps_travail < 0 || tps_travail > 100) # on test si la valeur du temps de travail est bien entre 0 et 100
+    {
+    print("ERROR : rate and time must be in range(0,100)")
+    }
+  
+  if (statut == "cadre") 
+    {
+    salaire_avant_impot <- ((salaire * tps_travail)/100) * (1 - 0.25) #calcul du montant des cotisations sociales d'un cadre
+    }
+  if (statut == "non-cadre")
+    {
+      salaire_avant_impot <- ((salaire * tps_travail)/100) * (1 - 0.22)  #calcul du montant des cotisations sociales d'un cadre
+    }
+  
+  salaire_net <- salaire_avant_impot * (1 - ((tx_source)/100))  #calcul du salaire après impôt
+
+  return(list(salaire_net,salaire_avant_impot)) #fin de la fonction et valeurs à retourner
+}
+
+
+
+
+
+
+
+
+
