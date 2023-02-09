@@ -1,0 +1,129 @@
+install.packages("readxl")
+library(readxl)
+
+setwd("C:/Users/ftexier/Desktop/TP 2 R")
+
+ds <- read_excel(path = "pokemon.xlsx", sheet = "pokemon", range = "A1:J252")
+
+#Exercice 1
+
+#b)
+nrow(x=ds) 
+ncol(x=ds)
+dim(x = ds)
+
+
+#c)
+names(x = ds)
+
+#d)
+str(object = ds)
+
+#e)
+ds$generation <- as.factor(ds$generation)
+ds$is_legendary <- as.factor(ds$is_legendary)
+ds$type <- as.factor(ds$type)
+
+#f)
+levels(ds$generation)
+levels(ds$is_legendary)
+levels(ds$type)
+
+#g)
+summary(ds) 
+
+
+
+#Exercice 2
+
+#a)
+mean(ds$weight_kg, na.rm = TRUE) # on doit enlever les valeurs non renseignées, d'où le na.rm
+
+#b)
+median(ds$weight_kg, na.rm = TRUE)
+
+#c)
+quantile( x = ds$height_m, probs = 0.25, na.rm = TRUE)
+quantile( x = ds$height_m, probs = 0.75, na.rm = TRUE)
+
+#d) 
+quantile(x = ds$height_m,probs = seq(0,1,0.1), na.rm = TRUE)
+
+#e)
+var(x = ds$weight_kg, na.rm = TRUE)
+sd(x = ds$weight_kg, na.rm = TRUE)
+
+#f) 
+tri_a_plat1 <- table(x = ds$generation)
+tri_a_plat2 <- table(x = ds$is_legendary)
+tri_a_plat3 <- table(x = ds$type)
+sort(tri_a_plat1,decreasing = TRUE)
+sort(tri_a_plat2,decreasing = TRUE)
+sort(tri_a_plat3,decreasing = TRUE)
+
+
+#Exercice 3
+
+#a)
+nom_legende <- ds[, c(2,4)]
+nom_legende
+
+#b)
+premieres_lignes_50 <- ds[c(1:50),1:2]
+premieres_lignes_50
+
+#c)
+question_ccccccc <- ds[c(1:10),]
+question_ccccccc
+
+#d)
+ddddd <- ds[,-10]
+ddddd
+
+#e)
+rang <-order(ds[,2])
+tri_alphabet<-ds[rang ,]
+tri_alphabet[1,]
+
+#f)
+pds <-order(ds[,6], decreasing = TRUE)
+tri_poids<-ds[pds ,]
+tri_poids[1,2]
+
+#g)
+atck <-order(ds[,8], decreasing = TRUE, ds[,10])
+tri_atck<-ds[atck ,]
+tri_atck[c(1:10)]
+
+#Exercice 4
+
+#a)
+atck_150 <- ds[ds$attack > 150, c("nom", "attack")]
+atck_150_2 <-order(atck_150[,2], decreasing = TRUE)
+dim(atck_150[atck_150_2,])
+
+#b)
+filtre_type <- ds[ds$type == "dragon" | ds$type == "ghost" | ds$type == "psychic" | ds$type == "dark", c("nom","type")]
+dim(filtre_type)
+
+#c)
+feu <- ds[ds$type == "fire" & ds$attack > 100, c("nom", "attack", "type")]
+feu_atck <- order(feu[,2], decreasing = TRUE)
+dim(feu[feu_atck,])
+
+#d)
+vit <- ds[ds$speed <= 150 & ds$speed >= 100, c("nom", "speed")]
+speed <- order(vit[,2], decreasing = TRUE)
+dim(vit[speed,])
+
+#e)
+nulle <- ds[is.na(ds$height_m), c("nom") ]
+dim(nulle)
+
+#f)
+vide <- ds[!is.na(ds$height_m) & !is.na(ds$weight_kg), c("nom")]
+dim(vide)
+
+#g)
+poids <- ds[ds$weight_kg > 250 & !is.na(ds$weight_kg), c("nom", "weight_kg")]
+poids 
