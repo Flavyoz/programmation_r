@@ -98,3 +98,32 @@ tri_atck[c(1:10)]
 #Exercice 4
 
 #a)
+atck_150 <- ds[ds$attack > 150, c("nom", "attack")]
+atck_150_2 <-order(atck_150[,2], decreasing = TRUE)
+dim(atck_150[atck_150_2,])
+
+#b)
+filtre_type <- ds[ds$type == "dragon" | ds$type == "ghost" | ds$type == "psychic" | ds$type == "dark", c("nom","type")]
+dim(filtre_type)
+
+#c)
+feu <- ds[ds$type == "fire" & ds$attack > 100, c("nom", "attack", "type")]
+feu_atck <- order(feu[,2], decreasing = TRUE)
+dim(feu[feu_atck,])
+
+#d)
+vit <- ds[ds$speed <= 150 & ds$speed >= 100, c("nom", "speed")]
+speed <- order(vit[,2], decreasing = TRUE)
+dim(vit[speed,])
+
+#e)
+nulle <- ds[is.na(ds$height_m), c("nom") ]
+dim(nulle)
+
+#f)
+vide <- ds[!is.na(ds$height_m) & !is.na(ds$weight_kg), c("nom")]
+dim(vide)
+
+#g)
+poids <- ds[ds$weight_kg > 250 & !is.na(ds$weight_kg), c("nom", "weight_kg")]
+poids 
