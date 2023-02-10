@@ -1,0 +1,57 @@
+setwd("L:/DUT/STID/Promo 2022/ftexier/R/TD3")
+
+quiz_1 <- read.csv(file = "quiz1.csv",
+         header = TRUE,
+         sep = ";",
+         dec = ".")
+
+quiz_2 <- read.csv(file = "quiz2.csv",
+                   header = T,
+                   sep = "\t", 
+                   dec = "," )
+
+
+
+quiz_3 <- read.csv(file = "quiz3.csv",
+                   header = F,
+                   sep = "|",
+                   dec =".")
+
+quiz_4 <- read.csv(file = "quiz4.csv",
+                   header = T, 
+                   sep = ";",
+                   dec = ",",
+                   row.names = 1)
+
+df <- data.frame()
+
+quiz_1$id_quiz <- 1
+df <- rbind(df, quiz_1)
+dim(df)
+
+quiz_2$id_quiz <- 2
+colnames(quiz_2) <- colnames(df) #on ne peut pas compiler des fichiers csv si les colonnes n'ont pas le mêm nom, on renomme donc les colonnes des différents fichiers
+df<-rbind(df,quiz_2)
+dim(df)
+
+quiz_3$id_quiz <- 3
+colnames(quiz_3) <- colnames(df)
+df<-rbind(df,quiz_3)
+dim(df)
+
+quiz_4$id_quiz <- 4
+colnames(quiz_4) <- colnames(df)
+df<-rbind(df,quiz_4)
+dim(df)
+
+#Exercice 3
+
+#a)
+mean(df$Total.Score..points.)
+
+#b)
+as.numeric(df$Average_time)
+
+
+
+
