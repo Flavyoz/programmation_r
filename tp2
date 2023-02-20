@@ -127,3 +127,23 @@ dim(vide)
 #g)
 poids <- ds[ds$weight_kg > 250 & !is.na(ds$weight_kg), c("nom", "weight_kg")]
 poids 
+
+
+Exercice 5
+
+#a)
+requete_1 <- aggregate(x = ds$attack ~ ds$type, data = ds, FUN = mean)
+requete_1
+requete_11 <- order(requete_1[,2], decreasing = T)
+head(requete_11,3)
+
+
+#b)
+requete_2 <- aggregate(x = ds$nom ~ ds$type, data = ds, FUN =  length)
+requete_2
+requete_22 <- order(requete_2[,2], decreasing = T)
+requete_22
+
+#c)
+requete_3 <- aggregate(x = ds$weight_kg ~ ds$type, data = ds, FUN = median)
+requete_3
