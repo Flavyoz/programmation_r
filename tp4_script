@@ -1,0 +1,65 @@
+
+set.seed(1789)
+sample(1:100,1)
+
+
+x <- sample(x = c(1,2,3,4,5,6),size = 100, replace = TRUE,
+            prob = c(1/6,1/6,1/6,1/6,1/6,1/6))
+
+
+           
+           
+Fx <- ecdf(x)
+plot(Fx, xlab = "X",
+     ylab = "F(x)", ylim = c(0,1),
+     main = "Fonction de répartition empirique")
+
+y <- rbinom(100, size=10, prob=0.8)
+
+frq_y <- prop.table(table(y))
+
+plot(frq_y, xlab = "x",
+     ylab = "P(X = X", 
+     main = "Répartition de la valeur de X ")
+
+
+
+
+pbinom(q = 8, size=10, prob=0.8)
+
+
+cumsum(frq_y)
+
+set.seed(1789)
+z <- runif(1000,min=0, max=10) #runif c'est random selon la loi,unifom
+hist(z, main="Distribution d'une loi uniforme",
+     probability = FALSE, ylim = c(0,0.15))
+hist(z, main="Distribution d'une loi uniforme", probability = T, ylim = c(0,0.15, ylab = "fréquence"))
+
+
+
+a <- rnorm(n = 1000,mean = 0,sd = 1)
+hist(x, main="Distribution d'une loi normale centrée réduite",
+     probability = TRUE)
+     
+pnorm(q = 1.65,mean = 0,sd = 1)     
+
+proba = 0.4
+alpha = 0.05
+n = 100
+
+proba-qnorm((1-alpha/2))*sqrt(proba*(1-proba)/n)
+proba+qnorm((1-alpha/2))*sqrt(proba*(1-proba)/n)
+
+r<- rnorm(n = 100, mean = 5, sd = 2)
+hist(r)
+qqnorm(y=x)
+?array
+
+
+data("iris")
+
+apply(iris[,1:4],2,mean)# le 2 ici veut dire qu'on fait la moyenne par colonne, si on avait mis 1 ça aurait été par ligne, ou alors on utilise la fonction sapply
+
+
+sapply(iris[,1:4],mean)
